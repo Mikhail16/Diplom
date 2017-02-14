@@ -1,0 +1,17 @@
+*{
+	list-style: none;
+	text-decoration: none;
+	outline: none;
+}
+#trendPlot, #trendс1, #trendVabs, #trendVabs1{
+	height: 600px !important;
+}
+
+#table1{
+	overflow: auto;
+	margin-bottom: 20px;
+}
+
+tab-5263-2 .h3, h3 {
+    font-size: 20px;
+}

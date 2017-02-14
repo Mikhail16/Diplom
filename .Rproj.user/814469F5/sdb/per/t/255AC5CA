@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "tt <- seq(1000) * 0.01\nsig <- sin(4 * pi * tt) + sin(3.4 * pi * tt)\nasig <- HilbertTransform(sig)\nenv <- HilbertEnvelope(asig)\nplot(tt, sig, type = \"l\")\nlines(tt, env, col = \"red\")\nlines(tt, -env, col = \"red\")",
+    "created" : 1486544471308.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2758241165",
+    "id" : "255AC5CA",
+    "lastKnownWriteTime" : 1485969908,
+    "last_content_update" : 1485969908,
+    "path" : "C:/Users/Mikhail/Desktop/code/hilbert.R",
+    "project_path" : "hilbert.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

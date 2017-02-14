@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(hht)\n\nTs <- 0.002\nf <- 192000\ni <- seq(0, (Ts-(1/f)),by = 1/f)\ny5 <- sin(2 * pi * 500 * i)\ny6 <- (-1) * y5\nplot(y5, type=\"l\")\n\nn <- length(y5)\ny_000 <- y5\ny_000[n:(2*n-1)] <- y5\ny_000[(2*n):(3*n-1)] <- y6\n\ny_rez <- 0\ny_rez[1:length(i)] <- 0\ny_rez[(length(i)+1):(1+length(y_000)+length(i)-1)] <- y_000\ny_rez[(1+length(y_000)+length(i)):(1+length(y_000)+11*length(i))] <- 0\ny_rez[(2+length(y_000)+11*length(i)):(length(y_000)+14*length(i))] <- (0.1)*y_000\ny_rez[(1+length(y_000)+14*length(i)):(1+length(y_000)+17*length(i))] <- 0\nplot(y_rez, type=\"l\")\n\n\n#y_rez[(length(i)+1):(1+length(y_000)+length(i)-1)] <- 0                            \n\nyqq <- (jitter(y_rez, amount = 0.1))\nplot(yqq, type=\"l\")\ny_001 <- 0\ny_001[1:length(y_000)] <- y_000\ny_001[(1+length(y_000)):length(yqq)] <- 0;\nplot(y_001, type=\"l\")\n\nN<-length(yqq)\nRxy<-rep(0, N-1)\nRxy1<-rep(0, N-1)\nRxy0<-rep(0, 2*N-1)\nfor(j in 1:N){\n  sum1 <- 0\n  \n  for(k in 1:(N-j+1)){ \n    sum1 <- sum1 + yqq[k] * y_001[k + j - 1]\n  }\n  \n  Rxy[j]<-sum1\n}   \nplot(Rxy,type=\"l\")\n\nfor (j in 1:N){\n  sum1 <- 0\n  for (k in 1:(N-j+1)){\n    sum1 <- sum1 + y_001[k] * yqq[k + j-1]\n  }\n  Rxy1[j] <- sum1\n}\nplot(Rxy1, type=\"l\")\n\nfor (j in 1:N){\n  Rxy0[j] <- Rxy[N - j + 1]\n}\n\nfor (j in (N+1):(2*N-1)){\n  Rxy0[j] <- Rxy1[j-N+1]\n}\nplot(Rxy0, type=\"l\", col=\"blue\")\n\n\n#max\nmax_Rxy <- which(Rxy == max(Rxy), arr.ind = TRUE)\nmax_Rxy_am <- max(Rxy)\n\nmax_Rxy1 <- which(Rxy1 == max(Rxy1), arr.ind = TRUE)\nmax_Rxy1_am <- max(Rxy1)\n\nmax_Rxy0 <- which(Rxy0 == max(Rxy0), arr.ind = TRUE)\nmax_Rxy0_am <- max(Rxy0)\n\ny_vid <- 0\ny_vid <- (Rxy0[max_Rxy0:length(Rxy0)]/max_Rxy0_am)\nplot((1:length(y_vid))/f,y_vid, type=\"l\")\n\nmax_y_vid <- which(y_vid[(n*5):length(y_vid)] == max(y_vid[(n*5):length(y_vid)]), arr.ind = TRUE)\nmax_y_vid_am <- max(y_vid[(n*5):length(y_vid)])\n\nmax_y_vid1 <- (max_y_vid+n*5)/f\n\n\n\na_y_vid <- HilbertTransform(y_vid)\nenv <- HilbertEnvelope(a_y_vid)\nplot((1:length(y_vid)), y_vid, type = \"l\")\nlines((1:length(y_vid)), env, col = \"red\")\nlines((1:length(y_vid)), -env, col = \"red\")\n\n\n# Ts <- 0.002\n# fq_us <- as.numeric(input$f_sin)\n\n\n# Ts_F <- as.numeric(10/f)\n# f_F <- as.numeric(1/fq_us)\n# \n# if(Ts_F > f_F){\n#   Ts_us <- Ts_F\n#   updateSliderInput(session, \"Ts_us\", value = Ts_us)\n#   Ts_min <- Ts_us\n# }\n# else{\n#   Ts_us <- f_F\n#   updateSliderInput(session, \"Ts_us\", value = Ts_us)\n#   Ts_min <- Ts_us\n# }\n\n",
+    "created" : 1485887673201.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2168049244",
+    "id" : "CAA0E793",
+    "lastKnownWriteTime" : 1486659145,
+    "last_content_update" : 1486659145923,
+    "path" : "C:/Users/Mikhail/Desktop/code/test_radio.R",
+    "project_path" : "test_radio.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
